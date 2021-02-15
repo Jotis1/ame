@@ -17,8 +17,9 @@ module.exports = {
     
         const embed = new Discord.MessageEmbed()
           .setTitle(`${user.tag} avatar`)
-          .setColor(0x00ae86)
-          .setImage(avatar);
+          .setColor("YELLOW")
+          .setImage(avatar)
+          .setTimestamp()
     
         return message.channel.send(embed);
     }

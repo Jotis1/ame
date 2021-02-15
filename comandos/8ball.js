@@ -1,39 +1,35 @@
+const Discord = require('discord.js')
+const embed2 = new Discord.MessageEmbed()
+.setDescription("Porfavor, ¿puedes añadir una pegunta?")
+.setColor("YELLOW")
+
+
 module.exports = {
     nombre: "8ball",
     alias: [],
     run: (client, message, args) => {
-        if (!args[2]){
-            return message.channel.send('Porfavor, ¿puedes añadir una pegunta?')
+        if (!args[0]){
+            return message.channel.send(embed2).then(msg =>(msg.delete({timeout: 5000})))
 
         }
-        let number = Math.floor(Math.random() * 9);
-        if (number == 0){
-            return message.channel.send('Sí, no me cabe la menor duda.')
-        }
-        if (number == 1){
-            return message.channel.send('No creo.')
-        }
-        if (number == 2){
-            return message.channel.send('No se como decirte esto... ehmm. NO.')
-        }
-        if (number == 3){
-            return message.channel.send('Depende de tú ya sabes que.')
-        }
-        if (number == 4){
-            return message.channel.send('Seguramente.')
-        }
-        if (number == 5){
-            return message.channel.send('XD')
-        }
-        if (number == 6){
-            return message.channel.send('Pregúntalo más tarde.')
-        }
-        if (number == 7){
-            return message.channel.send('No lo tienes nada a tu favor.')
-        }
-        if (number == 8){
-            return message.channel.send('Lo tienes a tu favor.')
-
-        }
+        let number = [
+            "Sí, no me cabe la menor duda.",
+            "No creo.",
+            "No se como decirte esto... ehmm. NO.",
+            "Depende de tú ya sabes que.",
+            "Seguramente.",
+            "XD",
+            "Pregúntalo más tarde.",
+            "No lo tienes nada a tu favor.",
+            "Lo tienes a tu favor.",
+            
+        ]
+        const embed = new Discord.MessageEmbed()
+    
+          .addField(`${message.author.username} pregunta:`,`${args}`, false)
+          .addField(`Respuesta:`,number[Math.floor(Math.random() * number.length)], false)
+          .setColor("YELLOW")
+    
+        message.channel.send(embed);
     }
 }

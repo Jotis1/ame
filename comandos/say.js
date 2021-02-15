@@ -3,7 +3,7 @@ module.exports = {
     alias: [],
     run: (client, message, args) => {
         let texto = args.join(" ")
-        if (!texto) return message.channel.send("**Ingresa Un Texto**").then(msg => msg.delete({timeout: 5000}))
+        if (!texto) return message.channel.send("**Ingresa Un Texto**").then(msg => msg.delete({timeout: 10000}))
         message.delete().catch() 
         message.channel.send(texto)
     }

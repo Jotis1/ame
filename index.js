@@ -12,26 +12,18 @@ const cheerio = require('cheerio')
 const fs = require("fs");
 const { isFunction } = require("util")
 
-client.login(process.env.TOKEN)
+client.on("ready", async() => {
+  console.log("Im horny")
+  await client.user.setActivity("Hololive", {
+    url: "https://www.twitch.tv/jotis_1",
+    type: "STREAMING",//can be LISTENING, WATCHING, PLAYING, STREAMING
+  });
 
-const prefix = "a!"
+})
+
 client.comandos = new Discord.Collection()
 
 let archivos = fs.readdirSync("./comandos").filter((f) => f.endsWith(".js"))
-
-client.on("ready", () => {
-
-    console.log("Im Horny") 
-    client.user.setPresence({
-        status: "online",
-        activity: {
-            name: "HOLOLIVE",
-            type: "WATCHING"
-
-        }
-    })
-
-})
 
 
 for(var archi of archivos) {
@@ -40,7 +32,7 @@ for(var archi of archivos) {
     console.log(archi+" fue cargado correctamente.")
 }
 
-
+const prefix = 'a!'
 client.on('message', async message =>{
     if(message.author.bot) return;
     if(message.channel.type == "dm") return;
@@ -67,3 +59,4 @@ client.on('message', async message =>{
 
 
 
+client.login("ODA5NTE2MzQ3MTAzOTAzODM2.YCWO2Q.I5CV3cgozwn_qY_14IZqOtPYkYc")
